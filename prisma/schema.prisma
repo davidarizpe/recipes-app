@@ -30,6 +30,7 @@ model Recipe {
   ingredients   String
   serving       Int
   servig_grams  Int
+  images        String
   cookTime      Int
   createdAt     DateTime  @default(now())
   userId        Int
