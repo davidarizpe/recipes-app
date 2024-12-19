@@ -5,7 +5,7 @@ interface RecipeCardProps {
   recipe: Recipe;
 }
 
-export default function RecipeCart({ recipe }: RecipeCardProps) {
+export default function RecipeCard({ recipe }: RecipeCardProps) {
   const { image, title, calories, cookTime } = recipe;
 
   return (
@@ -19,7 +19,7 @@ export default function RecipeCart({ recipe }: RecipeCardProps) {
           className="w-full h-auto rounded-md"
         />
       )}
-      <h2 className="subtitle text-[2.5rem] md:text-[3rem]">{title}</h2>
+      <h2 className="subtitle text-[200%]">{title}</h2>
       <span className="text-sm extradata">
         {calories} kcal | {cookTime} minutes
       </span>

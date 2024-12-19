@@ -1,23 +1,17 @@
-export interface Ingredient {
-  name: string;
-  amount: string;
-}
-
-export interface Macros {
-  protein?: number;
-  carbs?: number;
-  fat?: number;
-}
+import type { User } from "./users";
 
 export interface Recipe {
+  id: number;
   title: string;
-  description: string;
-  ingredients: Ingredient[];
-  steps: string[];
-  image: string | null;
-  calories: number;
-  servings: number;
+  description?: string;
+  protein: number;
+  fat: number;
+  carbs: number;
+  ingredients: string;
+  serving: number;
   servingGrams: number;
-  macros?: Macros;
   cookTime: number;
+  createdAt: Date;
+  userId: number | null;
+  user?: User;
 }
