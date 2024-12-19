@@ -10,6 +10,7 @@ export const createUser = async (values: {
   email: string;
   password: string;
 }) => {
+  let newUser;
   try {
     const equalEmail = await prisma.users.findFirst({
       where: {
@@ -27,7 +28,7 @@ export const createUser = async (values: {
       return { success: false, message: "Username or email already exists" };
     }
 
-    await prisma.users.create({
+    newUser = await prisma.users.create({
       data: {
         name: `${values.firstname} ${values.lastname}`,
         username: values.username || `${values.firstname}${values.lastname}`,
@@ -40,7 +41,7 @@ export const createUser = async (values: {
     return { success: false, message: "Error creating user" };
   }
 
-  return { success: true, message: "User created successfully" };
+  return { success: true, message: "User created successfully", user: newUser };
 };
 
 export default createUser;

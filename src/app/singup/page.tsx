@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 import createUser from "@/libs/server/singup";
 
 export default function Register() {
@@ -33,6 +34,7 @@ export default function Register() {
       try {
         const result = await createUser(values);
         if (result.success) {
+          window.localStorage.setItem("user", JSON.stringify(result.user));
           router.push("/");
         } else {
           alert(result.message);
@@ -183,9 +185,9 @@ export default function Register() {
 
         <p className="text-center text-sm text-gray-400">
           Already have an account?{" "}
-          <a href="#" className="text-sky-400 hover:underline">
+          <Link href="/singin" className="text-sky-400 hover:underline">
             Signin
-          </a>
+          </Link>
         </p>
       </form>
     </div>
