@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import Nav from "@/components/nav";
 import Link from "next/link";
 import createUser from "@/libs/singup";
 
@@ -47,10 +48,11 @@ export default function Register() {
   };
 
   return (
-    <div className="App flex items-center justify-center min-h-[100vh]">
+    <div className="App flex items-center justify-center min-h-[120vh]">
+      <Nav />
       <form
         onSubmit={handleSubmit}
-        className="flex flex-col gap-3 max-w-md p-6 rounded-xl bg-gray-900 text-white border border-gray-700"
+        className="flex flex-col gap-3 max-w-md p-6 rounded-xl mt-5 bg-gray-900 text-white border border-gray-700"
       >
         <p className="text-2xl font-semibold text-sky-400 relative pl-8">
           Register
@@ -147,6 +149,8 @@ export default function Register() {
             value={values.password}
             onChange={handleChange}
             autoComplete="off"
+            maxLength={20}
+            minLength={4}
             required
           />
           <span

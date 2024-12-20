@@ -6,7 +6,7 @@ export default function Nav() {
   const pathname = usePathname();
 
   return (
-    <div className="navbar bg-slate-700 text-white w-full flex justify-between items-center px-5 py-3 box-border">
+    <div className="navbar absolute top-0 z-[0] bg-slate-700 text-white w-full flex justify-between items-center px-5 py-3 box-border">
       <div className="header">
         <h1 className="title">Recipes app</h1>
       </div>
@@ -26,6 +26,14 @@ export default function Nav() {
         >
           Sing up
         </Link>
+        {window.localStorage.getItem("user") && (
+          <Link
+            href="/user"
+            className={pathname === "/user" ? "active" : "unactive"}
+          >
+            user
+          </Link>
+        )}
       </div>
     </div>
   );

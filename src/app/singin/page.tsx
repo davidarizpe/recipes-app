@@ -1,5 +1,6 @@
 "use client";
 import searchUser from "@/libs/searchUser";
+import Nav from "@/components/nav";
 import Link from "next/link";
 
 export default function Login() {
@@ -25,13 +26,14 @@ export default function Login() {
   };
 
   return (
-    <div className="App flex flex-col items-center justify-center min-h-[100vh]">
+    <div className="App flex flex-col items-center justify-center min-h-[120vh]">
+      <Nav />
       <div
         style={{
           boxShadow:
             "0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
         }}
-        className="bg-gray-800 rounded-lg shadow-xl overflow-hidden"
+        className="bg-gray-800 rounded-lg shadow-xl overflow-hidden m-5"
       >
         <div className="p-8">
           <h2 className="text-center text-3xl font-extrabold text-white">
