@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import createUser from "@/libs/server/singup";
+import createUser from "@/libs/singup";
 
 export default function Register() {
   const router = useRouter();

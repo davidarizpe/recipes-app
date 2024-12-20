@@ -1,5 +1,5 @@
 "use client";
-import searchUser from "@/libs/server/searchUser";
+import searchUser from "@/libs/searchUser";
 import Link from "next/link";
 
 export default function Login() {
