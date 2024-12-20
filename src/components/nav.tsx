@@ -1,5 +1,6 @@
 "use client";
 import { usePathname } from "next/navigation";
+import getUser from "@/libs/getUser";
 import Link from "next/link";
 
 export default function Nav() {
@@ -26,7 +27,7 @@ export default function Nav() {
         >
           Sing up
         </Link>
-        {window.localStorage.getItem("user") && (
+        {getUser() && (
           <Link
             href="/user"
             className={pathname === "/user" ? "active" : "unactive"}
