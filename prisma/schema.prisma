@@ -29,6 +29,7 @@ model Recipe {
   fat           Int
   carbs         Int
   ingredients   String
+  instruccions  String
   serving       Int
   servig_grams  Int
   cookTime      Int
