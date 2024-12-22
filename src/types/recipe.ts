@@ -4,6 +4,7 @@ export interface Recipe {
   id: number;
   title: string;
   description?: string;
+  images?: string;
   kcal: number;
   protein: number;
   fat: number;

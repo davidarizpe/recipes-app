@@ -8,7 +8,7 @@ const prisma = new PrismaClient();
 export default async function Home() {
   const recipes = await prisma.recipe.findMany();
   return (
-    <div className="App">
+    <div className="App flex flex-col items-center justify-center min-h-[100vh]">
       <Nav />
       <div className="grid">
         {recipes.map((recipe: Recipe) => (
