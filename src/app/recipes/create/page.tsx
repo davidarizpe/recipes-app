@@ -172,6 +172,7 @@ export default function CreateRecipe() {
               onChange={(e) =>
                 setData({ ...data, kcal: Number(e.target.value) })
               }
+              required
             />
           </div>
 
@@ -190,6 +191,7 @@ export default function CreateRecipe() {
                 onChange={(e) =>
                   setData({ ...data, protein: Number(e.target.value) })
                 }
+                required
               />
             </div>
             <div className="mb-4 flex-grow">
@@ -206,6 +208,7 @@ export default function CreateRecipe() {
                 onChange={(e) =>
                   setData({ ...data, fat: Number(e.target.value) })
                 }
+                required
               />
             </div>
             <div className="mb-4 flex-grow">
@@ -222,6 +225,7 @@ export default function CreateRecipe() {
                 onChange={(e) =>
                   setData({ ...data, carbs: Number(e.target.value) })
                 }
+                required
               />
             </div>
           </section>
