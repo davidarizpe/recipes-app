@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import type { Recipe } from "@/types/recipe";
 
 interface RecipeCardProps {
@@ -9,7 +10,10 @@ export default function RecipeCard({ recipe }: RecipeCardProps) {
   const { image, title, kcal, cookTime } = recipe;
 
   return (
-    <div className="cart w-[300px] bg-slate-800 text-white cursor-pointer p-5 rounded-lg transition-all hover:scale-105 active:scale-95">
+    <Link
+      href={`/recipes?id=${recipe.id}`}
+      className="cart w-[300px] bg-slate-800 text-white cursor-pointer p-5 rounded-lg transition-all hover:scale-105 active:scale-95"
+    >
       {image && (
         <Image
           src={`/images/${image}`}
@@ -23,6 +27,6 @@ export default function RecipeCard({ recipe }: RecipeCardProps) {
       <span className="text-sm extradata">
         {kcal} kcal | {cookTime} minutes
       </span>
-    </div>
+    </Link>
   );
 }
