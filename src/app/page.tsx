@@ -10,11 +10,11 @@ export default async function Home() {
   return (
     <div className="App flex flex-col items-center justify-center min-h-[100vh]">
       <Nav />
-      <div className="grid">
+      <main className="main flex flex-wrap gap-5 max-w-full md:max-w-[90%]">
         {recipes.map((recipe: Recipe) => (
           <RecipeCard key={recipe.id} recipe={recipe} />
         ))}
-      </div>
+      </main>
     </div>
   );
 }
