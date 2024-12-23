@@ -52,7 +52,7 @@ export default function Register() {
       <Nav />
       <form
         onSubmit={handleSubmit}
-        className="flex flex-col gap-3 max-w-md p-6 rounded-xl mt-5 bg-gray-900 text-white border border-gray-700"
+        className="flex flex-col gap-3 max-w-md p-6 rounded-xl mt-5 bg-gray-900 text-white border border-gray-700 absolute top-[30%]"
       >
         <p className="text-2xl font-semibold text-sky-400 relative pl-8">
           Register

@@ -33,7 +33,7 @@ export default function Login() {
           boxShadow:
             "0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
         }}
-        className="bg-gray-800 rounded-lg shadow-xl overflow-hidden m-5"
+        className="bg-gray-800 rounded-lg shadow-xl overflow-hidden m-5 absolute top-[30%]"
       >
         <div className="p-8">
           <h2 className="text-center text-3xl font-extrabold text-white">

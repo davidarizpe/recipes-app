@@ -26,6 +26,7 @@ ChartJS.register(
 const PieChart = ({
   labels,
   datasets,
+  total,
 }: {
   labels: string[];
   datasets: {
@@ -33,9 +34,8 @@ const PieChart = ({
     backgroundColor: string[];
     hoverBackgroundColor: string[];
   }[];
+  total: number;
 }) => {
-  const total = datasets[0].data.reduce((sum, value) => sum + value, 0);
-
   const chartData: ChartData<"pie", number[], string> = {
     labels: labels,
     datasets: datasets,
@@ -43,7 +43,7 @@ const PieChart = ({
 
   const chartOptions: ChartOptions<"pie"> = {
     responsive: true,
-    cutout: "70%", // Espacio en el centro
+    cutout: "70%",
     plugins: {
       legend: {
         position: "top",
