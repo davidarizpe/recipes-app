@@ -3,7 +3,8 @@ import type { User } from "./users";
 export interface Recipe {
   id: number;
   title: string;
-  description?: string;
+  description: string | null;
+  image?: string;
   kcal: number;
   protein: number;
   fat: number;
