@@ -1,11 +1,11 @@
 "use server";
-import type { Recipe as RecipeInterface } from "@/types/recipe";
+import type { NewRecipe } from "@/types/newRecipe";
 import type { User } from "@/types/users";
 import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
-export default async function newRecipe(data: RecipeInterface, user: User) {
+export default async function newRecipe(data: NewRecipe, user: User) {
   if (!data.title) throw new Error("Title is required");
   if (!user) throw new Error("User is required");
   if (!data.kcal) throw new Error("Calories is required");
@@ -34,7 +34,7 @@ export default async function newRecipe(data: RecipeInterface, user: User) {
       ingredients,
       instruccions,
       serving,
-      servig_grams: serving_grams,
+      serving_grams,
       cookTime,
       kcal: data.kcal,
       userId: user.id,

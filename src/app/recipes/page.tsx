@@ -8,15 +8,10 @@ import Loading from "../loading";
 import getRecipe from "@/libs/getRecipe";
 import Image from "next/image";
 import PieChart from "@/components/PieChart";
-
-interface ingredientsInterface {
-  ingredient: string;
-  amount: number;
-}
-
-interface instruccionsInterface {
-  instruccion: string;
-}
+import type {
+  ingredientsInterface,
+  instruccionsInterface,
+} from "@/types/newRecipe";
 
 export default function Recipes() {
   const searchParams = useSearchParams();
@@ -36,7 +31,9 @@ export default function Recipes() {
   const labels = ["Protein", "Carbs", "Fat"];
   const datasets = [
     {
-      data: [recipe?.protein, recipe?.fat, recipe?.carbs],
+      data: [recipe?.protein, recipe?.fat, recipe?.carbs].map(
+        (item) => item ?? 0
+      ),
       backgroundColor: ["#FF4500", "#1E90FF", "#FFD700"],
       hoverBackgroundColor: ["#FF4500", "#1E90FF", "#FFD700"],
     },
@@ -56,9 +53,9 @@ export default function Recipes() {
         <>
           <Nav />
           <main className="main absolute top-[30%]">
-            {recipe?.images && (
+            {recipe?.image && (
               <Image
-                src={`/images/${recipe?.images}`}
+                src={`/images/${recipe?.image}`}
                 alt={recipe?.title}
                 width={500}
                 height={500}
@@ -103,7 +100,8 @@ export default function Recipes() {
                     {ingredients.map(
                       (ingredient: ingredientsInterface, index: number) => (
                         <li className="text-xl" key={index}>
-                          {ingredient.ingredient}: {ingredient.amount} grams
+                          {ingredient.ingredient}: {Number(ingredient.amount)}{" "}
+                          grams
                         </li>
                       )
                     )}

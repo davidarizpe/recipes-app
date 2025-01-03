@@ -57,7 +57,7 @@ const PieChart = ({
 
   const centerTextPlugin = {
     id: "centerText",
-    beforeDraw: (chart: any) => {
+    beforeDraw: (chart: ChartJS<"pie", number[], string>) => {
       const { width, height, ctx } = chart;
 
       ctx.restore();

@@ -2,18 +2,15 @@
 import React, { useState } from "react";
 import newRecipe from "@/libs/newRecipe";
 import Link from "next/link";
-
-interface ingredientsInterface {
-  ingredient: string;
-  amount: number;
-}
-
-interface instruccionsInterface {
-  instruccion: string;
-}
+import type {
+  ingredientsInterface,
+  instruccionsInterface,
+  NewRecipe,
+} from "@/types/newRecipe";
+import { FormEvent } from "react";
 
 export default function CreateRecipe() {
-  const [data, setData] = useState({
+  const [data, setData] = useState<NewRecipe>({
     title: "",
     description: "",
     kcal: 0,
@@ -23,9 +20,11 @@ export default function CreateRecipe() {
     serving: 0,
     serving_grams: 0,
     cookTime: 0,
+    ingredients: "[]",
+    instruccions: "[]",
   });
   const [ingredients, setIngredients] = useState<ingredientsInterface[]>([]);
-  const [newIngredient, setNewIngredient] = useState({
+  const [newIngredient, setNewIngredient] = useState<ingredientsInterface>({
     ingredient: "",
     amount: "",
   });
@@ -35,7 +34,11 @@ export default function CreateRecipe() {
   });
 
   const handleAddIngredient = () => {
-    if (newIngredient.ingredient && newIngredient.amount) {
+    if (
+      typeof newIngredient !== "string" &&
+      newIngredient.ingredient &&
+      newIngredient.amount
+    ) {
       setIngredients([...ingredients, newIngredient]);
       setNewIngredient({ ingredient: "", amount: "" });
     }
@@ -56,22 +59,18 @@ export default function CreateRecipe() {
     setInstruccions(instruccions.filter((_, i) => i !== index));
   };
 
-  const handleSumbit = async (e: SubmitEvent) => {
+  const handleSumbit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const user = JSON.parse(window.localStorage.getItem("user") || "{}");
     data.cookTime = Number(data.cookTime);
-    const info = { ...data, ingredients, instruccions };
+    data.ingredients = JSON.stringify(ingredients);
+    data.instruccions = JSON.stringify(instruccions);
 
-    await newRecipe(info, user)
-      .then((newRecipe) => {
-        alert("Recipe created successfully");
-        console.log(newRecipe);
-        window.location.href = "/";
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+    await newRecipe(data, user).then((newRecipe) => {
+      alert("Recipe created successfully");
+      console.log(newRecipe);
+    });
   };
 
   return (
@@ -373,8 +372,8 @@ export default function CreateRecipe() {
                             <button
                               type="button"
                               onClick={() => {
-                                setNewIngredient(item);
-                                handleRemoveIngredient(index);
+                                setNewInstruccion(item);
+                                handleRemoveInstruccion(index);
                               }}
                               className="bg-orange-600 text-white px-3 py-1 rounded-md hover:bg-orange-700"
                             >
@@ -401,7 +400,9 @@ export default function CreateRecipe() {
               max={9999}
               className="mt-1 block w-full bg-gray-700 border border-gray-600 rounded-md p-2 text-gray-200 placeholder-gray-400"
               placeholder="Recipe cook time(minutes)"
-              onChange={(e) => setData({ ...data, cookTime: e.target.value })}
+              onChange={(e) =>
+                setData({ ...data, cookTime: Number(e.target.value) })
+              }
             />
           </div>
 

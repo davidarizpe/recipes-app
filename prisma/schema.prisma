@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -21,7 +18,7 @@ model Users {
 }
 
 model Recipe {
-  id            Int        @id @default(autoincrement())
+  id            Int      @id @default(autoincrement())
   title         String
   description   String?
   kcal          Int
@@ -31,10 +28,9 @@ model Recipe {
   ingredients   String
   instruccions  String
   serving       Int
-  servig_grams  Int
+  serving_grams Int
   cookTime      Int
-  createdAt     DateTime  @default(now())
+  createdAt     DateTime @default(now())
   userId        Int
-  user          Users?     @relation(fields: [userId], references: [id])
+  user          Users    @relation(fields: [userId], references: [id])
 }
-

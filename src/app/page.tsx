@@ -1,20 +1,28 @@
-import type { Recipe } from "@/types/recipe";
-import RecipeCard from "@/components/recipe card";
+"use client";
+import { useState, useEffect } from "react";
+import HomeMain from "@/components/HomeMain";
 import Nav from "@/components/nav";
-import { PrismaClient } from "@prisma/client";
+import Error from "@/components/505";
 
-const prisma = new PrismaClient();
+export default function Home() {
+  const [isWindowAvailable, setIsWindowAvailable] = useState<boolean>(false);
 
-export default async function Home() {
-  const recipes = await prisma.recipe.findMany();
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setIsWindowAvailable(true);
+    } else {
+      setIsWindowAvailable(false);
+    }
+  }, []);
+
+  if (!isWindowAvailable) {
+    return <Error />;
+  }
+
   return (
     <div className="App flex flex-col items-center justify-center min-h-[100vh]">
       <Nav />
-      <main className="main flex flex-wrap gap-5 max-w-full md:max-w-[90%]">
-        {recipes.map((recipe: Recipe) => (
-          <RecipeCard key={recipe.id} recipe={recipe} />
-        ))}
-      </main>
+      <HomeMain />
     </div>
   );
 }
